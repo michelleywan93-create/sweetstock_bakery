@@ -1,0 +1,411 @@
+/* ===== TEMA UTAMA & GLOBAL ===== */
+:root {
+    --bg: #fff5fa;
+    --primary: #d65f94;
+    --primary-dark: #b84a7c;
+    --secondary: #f8c8dc;
+    --accent: #f0a8d0;
+    --text: #4a3042;
+    --text-light: #7a5a70;
+    --muted: #a07d94;
+    --error: #c03e70;
+    --success: #267247;
+    --warning: #e69500;
+    --card-bg: #ffffff;
+    --sidebar-bg: #5a2e4c;
+    --sidebar-text: #fce4ef;
+    --border: #f4d9e9;
+    --shadow: rgba(214, 95, 148, 0.12);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: "Inter", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+a { text-decoration: none; color: inherit; }
+button { font-family: inherit; cursor: pointer; border: none; }
+input, select { font-family: inherit; }
+
+/* ===== HALAMAN DAFTAR & MASUK ===== */
+.auth-body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    background: var(--bg);
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+}
+.auth-card {
+    background: white;
+    border-radius: 24px;
+    padding: 32px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 12px 35px rgba(214,95,148,0.15);
+}
+.auth-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+.auth-icon { font-size: 48px; margin-bottom: 8px; }
+.auth-header h1 {
+    font-family: "Playfair Display", serif;
+    color: #7a3b60;
+    margin: 10px 0 4px;
+}
+.desc { color: var(--muted); margin: 0; }
+.alert { padding: 12px; border-radius: 12px; margin-bottom: 16px; display: none; }
+.alert.error { background: #ffe9f2; color: var(--error); }
+.alert.success { background: #e7f6ed; color: var(--success); }
+.auth-body form { display: grid; gap: 14px; }
+.auth-body label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #5a4050;
+}
+.auth-body input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #f4d9e9;
+    border-radius: 12px;
+    font-size: 15px;
+    outline: none;
+}
+.auth-body input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(214,95,148,0.1);
+}
+.auth-body button {
+    background: linear-gradient(135deg, #e86fb0, #d65f94);
+    color: white;
+    border: none;
+    padding: 13px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+}
+.auth-body button:hover { background: var(--primary-dark); }
+.link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: var(--muted);
+}
+.link a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* ===== SUSUN ATUR APLIKASI ===== */
+.app-shell { display: flex; min-height: 100vh; }
+.sidebar {
+    width: 260px;
+    background: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 100;
+}
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 24px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.brand-icon { font-size: 32px; }
+.brand h1 { font-family: "Playfair Display", serif; font-size: 20px; color: white; }
+.brand p { font-size: 12px; color: var(--secondary); }
+.nav-menu { flex: 1; padding: 20px 12px; }
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 12px 16px;
+    margin-bottom: 4px;
+    background: transparent;
+    color: var(--sidebar-text);
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+.nav-link:hover { background: rgba(255,255,255,0.08); }
+.nav-link.active {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 12px rgba(214,95,148,0.3);
+}
+.sidebar-footer {
+    padding: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+.user-card { display: flex; align-items: center; gap: 12px; }
+.avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: linear-gradient(135deg, #e86fb0, #d65f94);
+    color: white; display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 16px;
+}
+.user-card strong { display: block; color: white; font-size: 14px; }
+.user-card span { font-size: 12px; color: var(--secondary); }
+.user-card span a { color: inherit; text-decoration: none; }
+
+/* ===== KANDUNGAN UTAMA ===== */
+.main-content { flex: 1; margin-left: 260px; padding: 24px 32px; }
+.menu-btn { display: none; font-size: 24px; background: transparent; color: var(--text); padding: 4px 10px; }
+.topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 28px; flex-wrap: wrap; gap: 16px;
+}
+.eyebrow { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+.topbar h2 { font-size: 24px; color: var(--text); }
+.topbar-actions { display: flex; align-items: center; gap: 12px; }
+.date-chip {
+    background: white; padding: 8px 14px; border-radius: 20px;
+    font-size: 13px; color: var(--text-light); box-shadow: 0 2px 6px var(--shadow);
+}
+.primary-btn {
+    background: linear-gradient(135deg, #e86fb0, #d65f94);
+    color: white; padding: 10px 20px; border-radius: 12px;
+    font-size: 14px; font-weight: 600;
+    box-shadow: 0 4px 12px rgba(214,95,148,0.3); transition: transform 0.2s;
+}
+.primary-btn:hover { transform: translateY(-2px); }
+
+/* ===== KANDUNGAN BAHAGIAN ===== */
+.content-section { display: none; }
+.content-section.active { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== KAD UTAMA ===== */
+.hero-card {
+    background: white; border-radius: 20px; padding: 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 24px; margin-bottom: 28px;
+    box-shadow: 0 6px 20px var(--shadow); flex-wrap: wrap;
+}
+.badge {
+    display: inline-block; background: #ffe9f2; color: var(--primary);
+    padding: 6px 14px; border-radius: 20px; font-size: 12px;
+    font-weight: 600; margin-bottom: 12px;
+}
+.hero-card h3 { font-size: 26px; margin-bottom: 8px; color: var(--text); }
+.hero-card p { color: var(--text-light); max-width: 500px; }
+.hero-illustration { padding: 10px; min-width: 160px; display: flex; justify-content: center; }
+
+/* ===== CUPCAKE ANIMASI ===== */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+@keyframes sparkle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+.cupcake-3d {
+    display: flex; align-items: center; justify-content: center; flex-direction: column;
+    width: 160px; height: 200px; animation: float 3s ease-in-out infinite;
+    z-index: 10;
+}
+.cupcake-wrapper {
+    position: relative; display: flex; flex-direction: column; align-items: center;
+}
+.cupcake-liner {
+    width: 120px; height: 50px;
+    background: linear-gradient(180deg, #f8e2c8, #f0d0a8);
+    clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
+    border-radius: 0 0 8px 8px;
+}
+.cupcake-frosting {
+    width: 100px; height: 60px;
+    background: linear-gradient(180deg, #f8c8dc, #f0a8c8);
+    border-radius: 50px 50px 10px 10px;
+    position: relative; margin-top: -10px;
+}
+.frosting-swirly {
+    position: absolute; top: -20px; left: 50%; transform: translateX(-50%);
+    width: 80px; height: 50px;
+    background: linear-gradient(180deg, #fce4ef, #f8c8dc);
+    border-radius: 50px 50px 0 0;
+}
+.cupcake-sprinkles {
+    position: absolute; top: 18px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 3px; font-size: 11px;
+    animation: sparkle 2s ease-in-out infinite;
+}
+.cupcake-cherry {
+    position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
+    font-size: 26px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+}
+
+/* ===== STATISTIK ===== */
+.stats-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px; margin-bottom: 28px;
+}
+.stat-card {
+    background: white; border-radius: 16px; padding: 24px;
+    display: flex; gap: 14px; box-shadow: 0 4px 14px var(--shadow);
+}
+.stat-icon { font-size: 32px; }
+.stat-card p { font-size: 13px; color: var(--muted); }
+.stat-card h3 { font-size: 28px; color: var(--text); }
+.stat-card span { font-size: 12px; color: var(--muted); }
+
+/* ===== BAHAGIAN BAWAH ===== */
+.dashboard-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 20px;
+}
+.panel {
+    background: white; border-radius: 16px; padding: 24px;
+    box-shadow: 0 4px 14px var(--shadow);
+}
+.panel-header {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;
+}
+.panel-header h3 { font-size: 18px; color: var(--text); }
+.text-btn { background: transparent; color: var(--primary); font-size: 13px; font-weight: 600; }
+.low-stock-list, .order-list { margin-top: 12px; }
+.stock-alert, .order-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 0; border-bottom: 1px solid var(--border);
+}
+.stock-alert:last-child, .order-item:last-child { border-bottom: none; }
+.stock-alert strong { display: block; }
+.stock-alert span { font-size: 12px; color: var(--muted); }
+.stock-qty { color: var(--error); font-weight: 600; }
+.status {
+    padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 600;
+}
+.status.completed { background: #e7f6ed; color: var(--success); }
+.status.preparing { background: #fff4e5; color: #b37400; }
+.status.pending { background: #f3e5ff; color: #7b48b8; }
+
+/* ===== JADUAL INVENTORI ===== */
+.inventory-toolbar {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px; margin-bottom: 16px;
+}
+.toolbar-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.toolbar-actions input, .toolbar-actions select {
+    padding: 8px 12px; border: 1px solid var(--border);
+    border-radius: 10px; font-size: 13px;
+}
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th {
+    background: var(--bg); padding: 12px; text-align: left;
+    font-size: 12px; color: var(--muted); text-transform: uppercase;
+}
+td { padding: 14px 12px; border-bottom: 1px solid var(--border); font-size: 14px; }
+.stock-status {
+    padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 600;
+}
+.stock-status.low { background: #ffe9f2; color: var(--error); }
+.stock-status.available { background: #e7f6ed; color: var(--success); }
+.action-group { display: flex; gap: 6px; }
+.icon-btn {
+    background: var(--bg); border: none; width: 32px; height: 32px;
+    border-radius: 8px; font-size: 14px; cursor: pointer;
+}
+
+/* ===== PEMBEKAL & LAPORAN ===== */
+.supplier-grid, .reports-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;
+}
+.supplier-card {
+    background: white; border-radius: 16px; padding: 24px;
+    box-shadow: 0 4px 14px var(--shadow);
+}
+.supplier-logo {
+    width: 48px; height: 48px; border-radius: 12px;
+    background: linear-gradient(135deg, #e86fb0, #d65f94);
+    color: white; display: flex; align-items: center; justify-content: center;
+    font-weight: 700; margin-bottom: 12px;
+}
+.supplier-card h3 { font-size: 16px; margin-bottom: 4px; }
+.supplier-card p { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+.supplier-card span { font-size: 13px; color: var(--text-light); }
+.progress-row { margin: 16px 0; }
+.progress-row > div:first-child {
+    display: flex; justify-content: space-between; margin-bottom: 6px;
+}
+.progress {
+    height: 10px; background: var(--bg); border-radius: 5px; overflow: hidden;
+}
+.progress > div { height: 100%; border-radius: 5px; transition: width 0.5s ease; }
+#availableBar { background: linear-gradient(90deg, #4cc978, #38a860); }
+#lowBar { background: linear-gradient(90deg, #f2a65a, #e68a00); }
+.muted { color: var(--muted); font-size: 13px; margin-top: 4px; }
+.empty-page-card { text-align: center; padding: 60px 20px; color: var(--muted); }
+.empty-icon { font-size: 48px; margin-bottom: 16px; }
+
+/* ===== MODAL ===== */
+.modal-backdrop {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 200; opacity: 0; visibility: hidden; transition: all 0.3s;
+}
+.modal-backdrop.show { opacity: 1; visibility: visible; }
+.modal {
+    background: white; border-radius: 20px; width: 90%; max-width: 520px;
+    padding: 28px; transform: translateY(20px); transition: transform 0.3s;
+}
+.modal-backdrop.show .modal { transform: translateY(0); }
+.modal-header {
+    display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;
+}
+.close-btn { font-size: 24px; background: transparent; color: var(--muted); padding: 0; line-height: 1; }
+.form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.form-grid label {
+    display: flex; flex-direction: column; gap: 6px;
+    font-size: 13px; font-weight: 600; color: var(--text-light);
+}
+.form-grid input, .form-grid select {
+    padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; font-size: 14px;
+}
+.form-grid input:focus, .form-grid select:focus {
+    outline: none; border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(214,95,148,0.1);
+}
+.form-grid label:nth-child(1),
+.form-grid label:nth-child(3) { grid-column: 1 / -1; }
+.modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
+.secondary-btn {
+    background: var(--border); color: var(--text); padding: 10px 20px;
+    border-radius: 12px; font-size: 14px; font-weight: 600;
+}
+.toast {
+    position: fixed; bottom: 24px; right: 24px; background: var(--text);
+    color: white; padding: 14px 24px; border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    transform: translateY(100px); opacity: 0; transition: all 0.3s; z-index: 300;
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+
+/* ===== RESPONSIF ===== */
+@media (max-width: 768px) {
+    .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
+    .sidebar.open { transform: translateX(0); }
+    .menu-btn { display: block; }
+    .main-content { margin-left: 0; padding: 16px; }
+    .hero-card { flex-direction: column; text-align: center; }
+    .form-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .dashboard-grid { grid-template-columns: 1fr; }
+}
