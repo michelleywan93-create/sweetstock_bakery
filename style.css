@@ -209,48 +209,223 @@ input, select { font-family: inherit; }
 .hero-illustration { padding: 10px; min-width: 160px; display: flex; justify-content: center; }
 
 /* ===== CUPCAKE ANIMASI ===== */
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
-}
-@keyframes sparkle {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-}
+/* ===== CUPCAKE STABLE ANIMATION ===== */
+
 .cupcake-3d {
-    display: flex; align-items: center; justify-content: center; flex-direction: column;
-    width: 160px; height: 200px; animation: float 3s ease-in-out infinite;
-    z-index: 10;
+    width: 160px;
+    height: 200px;
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    /* Hanya cupcake utama yang bergerak */
+    animation: cupcakeFloat 4s ease-in-out infinite;
+
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
 }
+
+/* Floating yang lebih stabil */
+@keyframes cupcakeFloat {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(0, -8px, 0);
+    }
+
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+
+/* ===== WRAPPER ===== */
+
 .cupcake-wrapper {
-    position: relative; display: flex; flex-direction: column; align-items: center;
+    width: 140px;
+    height: 170px;
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+
+    box-sizing: border-box;
 }
+
+
+/* ===== CUPCAKE LINER ===== */
+
 .cupcake-liner {
-    width: 120px; height: 50px;
-    background: linear-gradient(180deg, #f8e2c8, #f0d0a8);
-    clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
+    width: 120px;
+    height: 50px;
+
+    position: relative;
+    z-index: 1;
+
+    background: linear-gradient(
+        180deg,
+        #f8e2c8 0%,
+        #f0d0a8 100%
+    );
+
+    clip-path: polygon(
+        10% 0%,
+        90% 0%,
+        100% 100%,
+        0% 100%
+    );
+
     border-radius: 0 0 8px 8px;
+
+    box-sizing: border-box;
 }
+
+
+/* ===== FROSTING ===== */
+
 .cupcake-frosting {
-    width: 100px; height: 60px;
-    background: linear-gradient(180deg, #f8c8dc, #f0a8c8);
-    border-radius: 50px 50px 10px 10px;
-    position: relative; margin-top: -10px;
+    width: 100px;
+    height: 60px;
+
+    position: relative;
+    z-index: 2;
+
+    margin-bottom: -2px;
+
+    background: linear-gradient(
+        180deg,
+        #f8c8dc 0%,
+        #f0a8c8 100%
+    );
+
+    border-radius: 50px 50px 12px 12px;
+
+    box-sizing: border-box;
 }
+
+
+/* ===== FROSTING ATAS ===== */
+
 .frosting-swirly {
-    position: absolute; top: -20px; left: 50%; transform: translateX(-50%);
-    width: 80px; height: 50px;
-    background: linear-gradient(180deg, #fce4ef, #f8c8dc);
-    border-radius: 50px 50px 0 0;
+    width: 80px;
+    height: 50px;
+
+    position: absolute;
+    top: -24px;
+    left: 50%;
+
+    /*
+     * Penting:
+     * translateX hanya untuk posisi,
+     * tidak dicampur dengan animation.
+     */
+    transform: translateX(-50%);
+
+    background: linear-gradient(
+        180deg,
+        #fce4ef 0%,
+        #f8c8dc 100%
+    );
+
+    border-radius: 50px 50px 15px 15px;
+
+    box-sizing: border-box;
 }
+
+
+/* ===== SPRINKLES ===== */
+
 .cupcake-sprinkles {
-    position: absolute; top: 18px; left: 50%; transform: translateX(-50%);
-    display: flex; gap: 3px; font-size: 11px;
-    animation: sparkle 2s ease-in-out infinite;
+    position: absolute;
+
+    top: 18px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 3px;
+
+    width: 70px;
+
+    font-size: 11px;
+
+    animation: sprinkleSparkle 2.5s ease-in-out infinite;
+
+    pointer-events: none;
 }
+
+@keyframes sprinkleSparkle {
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.65;
+    }
+}
+
+
+/* ===== CHERRY ===== */
+
 .cupcake-cherry {
-    position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
-    font-size: 26px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+    position: absolute;
+
+    top: -38px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 10;
+
+    font-size: 26px;
+
+    line-height: 1;
+
+    filter: drop-shadow(
+        0 2px 4px rgba(0, 0, 0, 0.15)
+    );
+
+    pointer-events: none;
+}
+
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 768px) {
+
+    .cupcake-3d {
+        width: 130px;
+        height: 170px;
+    }
+
+    .cupcake-wrapper {
+        transform: scale(0.85);
+    }
+}
+
+
+/* ===== REDUCE MOTION ===== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .cupcake-3d,
+    .cupcake-sprinkles {
+        animation: none;
+    }
 }
 
 /* ===== STATISTIK ===== */
