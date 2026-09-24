@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar · SweetStock</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-body">
+    <div class="auth-card">
+        <div class="auth-header">
+            <div class="auth-icon">🍰</div>
+            <h1>Daftar Akaun</h1>
+            <p class="desc">SweetStock — Bakery Inventory</p>
+        </div>
+        <div class="alert error" id="errorMsg"></div>
+        <div class="alert success" id="successMsg"></div>
+        <form id="signupForm">
+            <label>Nama Penuh</label>
+            <input type="text" id="fullName" required placeholder="Contoh: Ali Bin Ahmad">
+            <label>Nama Pengguna</label>
+            <input type="text" id="username" required placeholder="Contoh: alibakery">
+            <label>E-mel</label>
+            <input type="email" id="email" required placeholder="contoh@email.com">
+            <label>Kata Laluan</label>
+            <input type="password" id="password" required placeholder="Min 6 aksara">
+            <button type="submit">Daftar ✨</button>
+        </form>
+        <div class="link">Sudah ada akaun? <a href="login.html">Masuk sekarang</a></div>
+    </div>
+    <script>
+        if (localStorage.getItem('sweetstock_currentUser')) {
+            window.location.href = 'index.html';
+        }
+        const signupForm = document.getElementById('signupForm');
+        const errorMsg = document.getElementById('errorMsg');
+        const successMsg = document.getElementById('successMsg');
+        signupForm.addEventListener('submit', e => {
+            e.preventDefault();
+            errorMsg.style.display = 'none';
+            successMsg.style.display = 'none';
+            const fullName = document.getElementById('fullName').value.trim();
+            const username = document.getElementById('username').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            if (password.length < 6) {
+                errorMsg.textContent = 'Kata laluan sekurang-kurangnya 6 aksara!';
+                errorMsg.style.display = 'block';
+                return;
+            }
+            let users = JSON.parse(localStorage.getItem('sweetstock_users') || '[]');
+            if (users.find(u => u.username === username || u.email === email)) {
+                errorMsg.textContent = 'Nama pengguna atau e-mel sudah digunakan!';
+                errorMsg.style.display = 'block';
+                return;
+            }
+            users.push({ fullName, username, email, password });
+            localStorage.setItem('sweetstock_users', JSON.stringify(users));
+            successMsg.textContent = 'Akaun berjaya dibuat! Mengalih ke halaman masuk...';
+            successMsg.style.display = 'block';
+            signupForm.reset();
+            setTimeout(() => window.location.href = 'login.html', 1500);
+        });
+    </script>
+</body>
+</html>
