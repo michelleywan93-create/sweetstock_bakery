@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masuk · SweetStock</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-body">
+    <div class="auth-card">
+        <div class="auth-header">
+            <div class="auth-icon">🧁</div>
+            <h1>Masuk Akaun</h1>
+            <p class="desc">SweetStock — Bakery Inventory</p>
+        </div>
+        <div class="alert error" id="errorMsg"></div>
+        <form id="loginForm">
+            <label>Nama Pengguna / E-mel</label>
+            <input type="text" id="userInput" required placeholder="Masuk nama atau e-mel">
+            <label>Kata Laluan</label>
+            <input type="password" id="password" required placeholder="Masuk kata laluan">
+            <button type="submit">Masuk 🚪</button>
+        </form>
+        <div class="link">Belum ada akaun? <a href="signup.html">Daftar sekarang</a></div>
+    </div>
+    <script>
+        if (localStorage.getItem('sweetstock_currentUser')) {
+            window.location.href = 'index.html';
+        }
+        const loginForm = document.getElementById('loginForm');
+        const errorMsg = document.getElementById('errorMsg');
+        loginForm.addEventListener('submit', e => {
+            e.preventDefault();
+            errorMsg.style.display = 'none';
+            const userInput = document.getElementById('userInput').value.trim();
+            const password = document.getElementById('password').value;
+            const users = JSON.parse(localStorage.getItem('sweetstock_users') || '[]');
+            const user = users.find(u => 
+                (u.username === userInput || u.email === userInput) && u.password === password
+            );
+            if (user) {
+                localStorage.setItem('sweetstock_currentUser', JSON.stringify({
+                    fullName: user.fullName,
+                    username: user.username
+                }));
+                window.location.href = 'index.html';
+            } else {
+                errorMsg.textContent = 'Nama pengguna/e-mel atau kata laluan salah!';
+                errorMsg.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
