@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="SweetStock — Bakery Inventory Management System" />
+    <title>SweetStock · Bakery Inventory</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-icon">🧁</div>
+        <div>
+          <h1>SweetStock</h1>
+          <p>Bakery Inventory</p>
+        </div>
+      </div>
+      <nav class="nav-menu">
+        <button class="nav-link active" data-section="dashboard">
+          <span>⌂</span> Dashboard
+        </button>
+        <button class="nav-link" data-section="inventory">
+          <span>▦</span> Inventory
+        </button>
+        <button class="nav-link" data-section="orders">
+          <span>🧾</span> Orders
+        </button>
+        <button class="nav-link" data-section="suppliers">
+          <span>🚚</span> Suppliers
+        </button>
+        <button class="nav-link" data-section="reports">
+          <span>📊</span> Reports
+        </button>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="user-card">
+          <div class="avatar" id="userAvatar"></div>
+          <div>
+            <strong id="userName"></strong>
+            <span><a href="#" id="logoutLink">Log Keluar</a></span>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <main class="main-content">
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn" aria-label="Buka Menu">☰</button>
+        <div>
+          <p class="eyebrow">Bakery Inventory Management</p>
+          <h2 id="pageTitle">Dashboard</h2>
+        </div>
+        <div class="topbar-actions">
+          <div class="date-chip" id="todayDate"></div>
+          <button class="primary-btn" id="addProductBtn">＋ Add Product</button>
+        </div>
+      </header>
+      <section class="content-section active" id="dashboardSection">
+        <div class="hero-card">
+          <div>
+            <span class="badge">🍬 Inventory Overview</span>
+            <h3>Keep your bakery stocked and ready 🧁</h3>
+            <p>Track ingredients, finished products, stock levels and supplier activity from one simple dashboard.</p>
+          </div>
+          <div class="hero-illustration" aria-hidden="true">
+            <div class="cupcake-3d">
+              <div class="cupcake-wrapper">
+                <div class="cupcake-liner"></div>
+                <div class="cupcake-frosting">
+                  <div class="frosting-swirly"></div>
+                </div>
+                <div class="cupcake-sprinkles">
+                  <span>💗</span><span>✨</span><span>💜</span><span>🧡</span><span>💛</span>
+                </div>
+                <div class="cupcake-cherry">🍒</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="stats-grid">
+          <article class="stat-card">
+            <div class="stat-icon">📦</div>
+            <div>
+              <p>Total Products</p>
+              <h3 id="totalProducts">0</h3>
+              <span>All inventory items</span>
+            </div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-icon">⚠️</div>
+            <div>
+              <p>Low Stock</p>
+              <h3 id="lowStockCount">0</h3>
+              <span>Need restocking soon</span>
+            </div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-icon">💰</div>
+            <div>
+              <p>Inventory Value</p>
+              <h3 id="inventoryValue">RM 0.00</h3>
+              <span>Estimated stock value</span>
+            </div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-icon">🛒</div>
+            <div>
+              <p>Orders Today</p>
+              <h3>18</h3>
+              <span>Customer orders</span>
+            </div>
+          </article>
+        </div>
+        <div class="dashboard-grid">
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Stock Alert</p>
+                <h3>Low Stock Items</h3>
+              </div>
+              <button class="text-btn" data-goto="inventory">View all →</button>
+            </div>
+            <div id="lowStockList" class="low-stock-list"></div>
+          </section>
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Activity</p>
+                <h3>Recent Orders</h3>
+              </div>
+            </div>
+            <div class="order-list">
+              <div class="order-item">
+                <div><strong>#BK-1048</strong><span>Chocolate Croissant × 6</span></div>
+                <span class="status completed">Completed ✅</span>
+              </div>
+              <div class="order-item">
+                <div><strong>#BK-1047</strong><span>Sourdough Loaf × 2</span></div>
+                <span class="status preparing">Preparing 👩‍🍳</span>
+              </div>
+              <div class="order-item">
+                <div><strong>#BK-1046</strong><span>Red Velvet Cupcake × 12</span></div>
+                <span class="status completed">Completed ✅</span>
+              </div>
+              <div class="order-item">
+                <div><strong>#BK-1045</strong><span>Butter Cake × 1</span></div>
+                <span class="status pending">Pending ⏳</span>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+      <section class="content-section" id="inventorySection">
+        <div class="panel">
+          <div class="inventory-toolbar">
+            <div>
+              <p class="eyebrow">Product Management</p>
+              <h3>Inventory List 📋</h3>
+            </div>
+            <div class="toolbar-actions">
+              <input type="search" id="searchInput" placeholder="Search product..." />
+              <select id="categoryFilter">
+                <option value="all">All Categories</option>
+                <option value="Ingredient">Ingredient</option>
+                <option value="Bread">Bread</option>
+                <option value="Pastry">Pastry</option>
+                <option value="Cake">Cake</option>
+              </select>
+              <select id="stockFilter">
+                <option value="all">All Stock</option>
+                <option value="low">Low Stock</option>
+                <option value="available">Available</option>
+              </select>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Category</th>
+                  <th>Stock</th>
+                  <th>Unit</th>
+                  <th>Unit Price</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="inventoryTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <section class="content-section" id="ordersSection">
+        <div class="empty-page-card">
+          <div class="empty-icon">🧾</div>
+          <h3>Order Management</h3>
+          <p>Order tracking page — ready for your data.</p>
+        </div>
+      </section>
+      <section class="content-section" id="suppliersSection">
+        <div class="supplier-grid">
+          <article class="supplier-card">
+            <div class="supplier-logo">FM</div>
+            <h3>Fresh Mills Sdn. Bhd.</h3>
+            <p>Flour, sugar and baking dry goods.</p>
+            <span>📞 +60 12-345 6789</span>
+          </article>
+          <article class="supplier-card">
+            <div class="supplier-logo">DP</div>
+            <h3>DairyPlus Trading</h3>
+            <p>Butter, milk, cream and cheese.</p>
+            <span>📞 +60 11-222 9088</span>
+          </article>
+          <article class="supplier-card">
+            <div class="supplier-logo">CC</div>
+            <h3>Cocoa Craft Supply</h3>
+            <p>Chocolate, cocoa and decorations.</p>
+            <span>📞 +60 13-889 1900</span>
+          </article>
+        </div>
+      </section>
+      <section class="content-section" id="reportsSection">
+        <div class="reports-grid">
+          <article class="panel report-card">
+            <p class="eyebrow">Stock Health</p>
+            <h3>Inventory Summary 📊</h3>
+            <div class="progress-row">
+              <div><span>✅ Available Stock</span><strong id="availablePercent">0%</strong></div>
+              <div class="progress"><div id="availableBar"></div></div>
+            </div>
+            <div class="progress-row">
+              <div><span>⚠️ Low Stock</span><strong id="lowPercent">0%</strong></div>
+              <div class="progress"><div id="lowBar"></div></div>
+            </div>
+          </article>
+          <article class="panel report-card">
+            <p class="eyebrow">Estimated Value</p>
+            <h3 id="reportValue">RM 0.00</h3>
+            <p class="muted">Calculated using current stock × unit price.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+  <div class="modal-backdrop" id="productModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <p class="eyebrow">Inventory</p>
+          <h3 id="modalTitle">Add New Product ✨</h3>
+        </div>
+        <button class="close-btn" id="closeModalBtn" aria-label="Tutup">×</button>
+      </div>
+      <form id="productForm">
+        <input type="hidden" id="productId" />
+        <div class="form-grid">
+          <label>Product Name<input id="productName" type="text" required placeholder="Contoh: Bread Flour" /></label>
+          <label>Category<select id="productCategory" required>
+            <option value="Ingredient">Ingredient</option>
+            <option value="Bread">Bread</option>
+            <option value="Pastry">Pastry</option>
+            <option value="Cake">Cake</option>
+          </select></label>
+          <label>Stock Quantity<input id="productStock" type="number" min="0" step="0.01" required /></label>
+          <label>Unit<select id="productUnit" required>
+            <option value="kg">kg</option>
+            <option value="pack">pack</option>
+            <option value="pcs">pcs</option>
+            <option value="box">box</option>
+            <option value="bottle">bottle</option>
+          </select></label>
+          <label>Unit Price (RM)<input id="productPrice" type="number" min="0" step="0.01" required /></label>
+          <label>Low Stock Level<input id="productMinimum" type="number" min="0" step="0.01" required /></label>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="secondary-btn" id="cancelBtn">Cancel</button>
+          <button type="submit" class="primary-btn">Save Product 💾</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
