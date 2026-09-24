@@ -209,73 +209,64 @@ input, select { font-family: inherit; }
 .hero-illustration { padding: 10px; min-width: 160px; display: flex; justify-content: center; }
 
 /* ===== CUPCAKE ANIMASI ===== */
-/* ===== CUPCAKE STABLE ANIMATION ===== */
-
 .cupcake-3d {
-    width: 160px;
-    height: 200px;
-    position: relative;
+    width: 160px !important;
+    height: 200px !important;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative !important;
 
-    flex-shrink: 0;
+    display: block !important;
 
-    /* Hanya cupcake utama yang bergerak */
-    animation: cupcakeFloat 4s ease-in-out infinite;
+    flex: 0 0 160px !important;
+    flex-shrink: 0 !important;
 
-    will-change: transform;
-    transform: translate3d(0, 0, 0);
-}
+    /* MATIKAN animation supaya tidak lari */
+    animation: none !important;
 
-/* Floating yang lebih stabil */
-@keyframes cupcakeFloat {
-    0% {
-        transform: translate3d(0, 0, 0);
-    }
-
-    50% {
-        transform: translate3d(0, -8px, 0);
-    }
-
-    100% {
-        transform: translate3d(0, 0, 0);
-    }
-}
-
-
-/* ===== WRAPPER ===== */
-
-.cupcake-wrapper {
-    width: 140px;
-    height: 170px;
-
-    position: relative;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
+    transform: none !important;
 
     box-sizing: border-box;
 }
 
 
-/* ===== CUPCAKE LINER ===== */
+/* CUPCAKE WRAPPER */
+
+.cupcake-wrapper {
+    width: 140px !important;
+    height: 180px !important;
+
+    position: absolute !important;
+
+    left: 10px !important;
+    top: 10px !important;
+
+    display: block !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    transform: none !important;
+
+    box-sizing: border-box;
+}
+/* LINER / BAWAH CUPCAKE */
 
 .cupcake-liner {
-    width: 120px;
-    height: 50px;
+    width: 120px !important;
+    height: 50px !important;
 
-    position: relative;
-    z-index: 1;
+    position: absolute !important;
+
+    left: 10px !important;
+    top: 115px !important;
+
+    margin: 0 !important;
 
     background: linear-gradient(
         180deg,
         #f8e2c8 0%,
         #f0d0a8 100%
-    );
+    ) !important;
 
     clip-path: polygon(
         10% 0%,
@@ -286,110 +277,116 @@ input, select { font-family: inherit; }
 
     border-radius: 0 0 8px 8px;
 
+    transform: none !important;
+
+    z-index: 1;
+
     box-sizing: border-box;
 }
-
-
-/* ===== FROSTING ===== */
+/* FROSTING */
 
 .cupcake-frosting {
-    width: 100px;
-    height: 60px;
+    width: 100px !important;
+    height: 60px !important;
 
-    position: relative;
-    z-index: 2;
+    position: absolute !important;
 
-    margin-bottom: -2px;
+    left: 20px !important;
+    top: 65px !important;
+
+    margin: 0 !important;
 
     background: linear-gradient(
         180deg,
         #f8c8dc 0%,
         #f0a8c8 100%
-    );
+    ) !important;
 
     border-radius: 50px 50px 12px 12px;
 
+    transform: none !important;
+
+    z-index: 3;
+
     box-sizing: border-box;
 }
-
-
-/* ===== FROSTING ATAS ===== */
+/* FROSTING ATAS */
 
 .frosting-swirly {
-    width: 80px;
-    height: 50px;
+    width: 80px !important;
+    height: 50px !important;
 
-    position: absolute;
-    top: -24px;
-    left: 50%;
+    position: absolute !important;
 
-    /*
-     * Penting:
-     * translateX hanya untuk posisi,
-     * tidak dicampur dengan animation.
-     */
-    transform: translateX(-50%);
+    left: 10px !important;
+    top: -22px !important;
+
+    margin: 0 !important;
 
     background: linear-gradient(
         180deg,
         #fce4ef 0%,
         #f8c8dc 100%
-    );
+    ) !important;
 
     border-radius: 50px 50px 15px 15px;
 
+    transform: none !important;
+
+    z-index: 4;
+
     box-sizing: border-box;
 }
-
-
-/* ===== SPRINKLES ===== */
+/* SPRINKLES */
 
 .cupcake-sprinkles {
-    position: absolute;
+    width: 70px !important;
 
-    top: 18px;
-    left: 50%;
+    position: absolute !important;
 
-    transform: translateX(-50%);
+    left: 15px !important;
+    top: 18px !important;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin: 0 !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
 
     gap: 3px;
 
-    width: 70px;
+    transform: none !important;
+
+    z-index: 5;
 
     font-size: 11px;
 
-    animation: sprinkleSparkle 2.5s ease-in-out infinite;
+    animation: none !important;
 
     pointer-events: none;
 }
-
-@keyframes sprinkleSparkle {
-    0%,
-    100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0.65;
-    }
-}
-
-
-/* ===== CHERRY ===== */
+/* CHERRY */
 
 .cupcake-cherry {
-    position: absolute;
+    position: absolute !important;
 
-    top: -38px;
-    left: 50%;
+    left: 50px !important;
+    top: 0px !important;
 
-    transform: translateX(-50%);
+    margin: 0 !important;
 
-    z-index: 10;
+    width: 40px !important;
+    height: 35px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    transform: none !important;
+
+    z-index: 20;
 
     font-size: 26px;
 
@@ -401,22 +398,43 @@ input, select { font-family: inherit; }
 
     pointer-events: none;
 }
+/* MATIKAN SEMUA ANIMATION LAMA */
 
+.cupcake-3d *,
+.cupcake-wrapper *,
+.cupcake-frosting *,
+.frosting-swirly *,
+.cupcake-sprinkles *,
+.cupcake-cherry * {
+    animation: none !important;
+}
+/* DESKTOP */
 
-/* ===== MOBILE ===== */
+@media (min-width: 769px) {
+
+    .cupcake-3d {
+        position: relative !important;
+        transform: none !important;
+    }
+
+}
+/* MOBILE */
 
 @media (max-width: 768px) {
 
     .cupcake-3d {
-        width: 130px;
-        height: 170px;
+        width: 130px !important;
+        height: 170px !important;
+
+        flex-basis: 130px !important;
     }
 
     .cupcake-wrapper {
-        transform: scale(0.85);
+        transform: scale(0.85) !important;
+        transform-origin: top center !important;
     }
-}
 
+}
 
 /* ===== REDUCE MOTION ===== */
 
